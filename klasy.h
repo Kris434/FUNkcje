@@ -7,15 +7,11 @@ private:
     double x;
     double y;
 public:
-    double getX()
-    {
-        return this->x;
-    }
+    void setX(double n_x);
+    void setY(double n_y);
 
-    double getY()
-    {
-        return this->y;
-    }
+    double getX();
+    double getY();
 };
 
 class liniowa : public Funkcje
@@ -25,15 +21,20 @@ private:
     double b;
 
 public:
-    double getA()
-    {
-        return this->a;
-    }
+    double obliczY();
 
-    double getB()
-    {
-        return this->b;
-    }
+    void setA(double n_a);
+    void setB(double n_a);
+
+    double getA();
+    double getB();
+
+    liniowa(double x, double a, double b);
+};
+
+class logarytmiczna : public Funkcje
+{
+    
 };
 
 #endif // KLASY_H
