@@ -13,7 +13,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_10_clicked() // wyswietlanie menu bocznego
+void MainWindow::on_pushButton_10_clicked() // wyswietlanie menu bocznegol
 {
     if (MenuWidok) {
         ui->frame->hide();

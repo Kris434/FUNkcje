@@ -305,7 +305,7 @@
                  <item alignment="Qt::AlignTop">
                   <widget class="QLabel" name="label_8">
                    <property name="text">
-                    <string>TextLabel</string>
+                    <string>TEXT</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
