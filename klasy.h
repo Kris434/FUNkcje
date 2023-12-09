@@ -6,6 +6,7 @@ class Funkcje
 private:
     double x;
     double y;
+
 public:
     void setX(double n_x);
     void setY(double n_y);
@@ -33,8 +34,6 @@ public:
 };
 
 class logarytmiczna : public Funkcje
-{
-    
-};
+{};
 
 #endif // KLASY_H

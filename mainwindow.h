@@ -4,7 +4,9 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -15,7 +17,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_10_clicked(); // menu boczne
+    void on_pushButton_9_clicked();  // minimalizacja
+    void on_pushButton_8_clicked();  // pelny/okno ekran
+    void on_pushButton_7_clicked();  // zamykania porgramu
+
 private:
     Ui::MainWindow *ui;
+    bool MenuWidok = true;
+    bool duzeOkno = true;
 };
 #endif // MAINWINDOW_H

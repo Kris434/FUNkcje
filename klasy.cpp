@@ -25,7 +25,7 @@ void liniowa::setA(double n_a)
     this->a = n_a;
 }
 
-double liniowa::setB(double n_b)
+void liniowa::setB(double n_b)
 {
     this->b = n_b;
 }
