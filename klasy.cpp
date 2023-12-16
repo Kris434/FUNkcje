@@ -1,5 +1,5 @@
 #include "klasy.h"
-#include "qcustomplot.h"
+#include "qcustomplot.cpp"
 #include <cmath>
 
 void Wykres::setSkala(double x, double y)
@@ -30,17 +30,28 @@ void Wykres::rysujWykres()
 {
     QVector<double> x(101), y(101);
 
-    Funkcje tab[4] = {liniowa(5, 5, 5), pierwiastek(), sinus(), logarytmiczna()};
-
-    for(int i = 0; i <= 100; i++)
+    switch(typ)
     {
-        x[i] = i/20;
-        y[i] = tab[typ].obliczY();
+        default:
+        case typFunkcji::liniowa:
+            liniowa f(5, 5, 5);
+
+            for(int i = 0; i <= 100; i++)
+            {
+                x[i] = i/20;
+                y[i] = f.obliczY();
+            }
     }
 
     customPlot->addGraph();
     customPlot->graph(0)->setData(x, y);
-    customPlot-replot();
+
+    customPlot->xAxis->setLabel("x");
+    customPlot->yAxis->setLabel("y");
+
+    customPlot->xAxis->setRange(-1, 1);
+    customPlot->yAxis->setRange(0, 1);
+    customPlot->replot();
 }
 
 Wykres::Wykres(double x, double y, typFunkcji t)
@@ -69,14 +80,34 @@ double Funkcje::getX()
     return this->x;
 }
 
-void liniowa::setA(double n_a)
+void Funkcje::setA(double n_a)
 {
     this->a = n_a;
 }
 
-void liniowa::setB(double n_b)
+void Funkcje::setB(double n_b)
 {
     this->b = n_b;
+}
+
+void Funkcje::setC(double n_c)
+{
+    this->c = n_c;
+}
+
+void Funkcje::setD(double n_d)
+{
+    this->d = n_d;
+}
+
+void Funkcje::setF(double n_f)
+{
+    this->f = n_f;
+}
+
+void Funkcje::setFi(double n_fi)
+{
+    this->fi = n_fi;
 }
 
 double liniowa::getA()
@@ -105,21 +136,6 @@ liniowa::liniowa(double x, double a, double b)
     setB(b);
 }
 
-void logarytmiczna::setA(double n_a)
-{
-    this->a = n_a;
-}
-
-void logarytmiczna::setB(double n_b)
-{
-    this->b = n_b;
-}
-
-void logarytmiczna::setC(double n_c)
-{
-    this->c = n_c;
-}
-
 double logarytmiczna::getA()
 {
     return this->a;
@@ -144,24 +160,12 @@ double logarytmiczna::obliczY()
     return y;
 }
 
-void sinus::setA(double n_a)
+logarytmiczna::logarytmiczna(double n_x, double n_a, double n_b, double n_c)
 {
-    this->a = n_a;
-}
-
-void sinus::setB(double n_b)
-{
-    this->b = n_b;
-}
-
-void sinus::setF(double n_f)
-{
-    this->f = n_f;
-}
-
-void sinus::setFi(double n_fi)
-{
-    this->fi = n_fi;
+    setX(n_x);
+    setA(n_a);
+    setB(n_b);
+    setC(n_c);
 }
 
 double sinus::getA()
@@ -193,14 +197,13 @@ double sinus::obliczY()
     return y;
 }
 
-void pierwiastek::setA(double n_a)
+sinus::sinus(double n_x, double n_a, double n_b, double n_f, double n_fi)
 {
-    this->a = n_a;
-}
-
-void pierwiastek::setD(double n_d)
-{
-    this->d = n_d;
+    setX(n_x);
+    setA(n_a);
+    setB(n_b);
+    setF(n_f);
+    setFi(n_fi);
 }
 
 double pierwiastek::getA()
@@ -220,4 +223,11 @@ double pierwiastek::obliczY()
     y = a * sqrt(getX()) + d;
 
     return y;
+}
+
+pierwiastek::pierwiastek(double n_x, double n_a, double n_d)
+{
+    setX(n_x);
+    setA(n_a);
+    setD(n_d);
 }
