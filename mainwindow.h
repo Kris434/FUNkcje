@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_10_clicked(); // menu boczne l
+    void on_pushButton_10_clicked(); // menu boczne
     void on_pushButton_9_clicked();  // minimalizacja
     void on_pushButton_8_clicked();  // pelny/okno ekran
     void on_pushButton_7_clicked();  // zamykania porgramu
