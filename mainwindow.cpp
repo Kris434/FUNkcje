@@ -42,9 +42,82 @@ void MainWindow::on_pushButton_7_clicked() // przycik do zamykania porgramu
 }
 
 
-void MainWindow::on_pushButton_clicked()
+
+void MainWindow::on_Liniowa_clicked()
 {
     liniowa f(5, 5);
+    Wykres w(ui->doubleSpinBox_2->value(), ui->doubleSpinBox->value(), typFunkcji::liniowa);
+    QVector<double> x(101), y(101);
+
+    for(int i = 0; i <= 100; i++)
+    {
+        x[i] = i / w.getSkalaX();
+        y[i] = f.obliczY(x[i]);
+    }
+
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+
+    ui->customPlot->xAxis->setRange(0, x[100]);
+    ui->customPlot->yAxis->setRange(0, y[100]);
+    ui->customPlot->replot();
+}
+
+
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    logarytmiczna f(5, 5, 5);
+    Wykres w(ui->doubleSpinBox_2->value(), ui->doubleSpinBox->value(), typFunkcji::liniowa);
+    QVector<double> x(101), y(101);
+
+    for(int i = 0; i <= 100; i++)
+    {
+        x[i] = i / w.getSkalaX();
+        y[i] = f.obliczY(x[i]);
+    }
+
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+
+    ui->customPlot->xAxis->setRange(0, x[100]);
+    ui->customPlot->yAxis->setRange(0, y[100]);
+    ui->customPlot->replot();
+}
+void MainWindow::on_pushButton_3_clicked()
+{
+    pierwiastek f(5, 5);
+    Wykres w(ui->doubleSpinBox_2->value(), ui->doubleSpinBox->value(), typFunkcji::liniowa);
+    QVector<double> x(101), y(101);
+
+    for(int i = 0; i <= 100; i++)
+    {
+        x[i] = i / w.getSkalaX();
+        y[i] = f.obliczY(x[i]);
+    }
+
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+
+    ui->customPlot->xAxis->setRange(0, x[100]);
+    ui->customPlot->yAxis->setRange(0, y[100]);
+    ui->customPlot->replot();
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    sinus f(5, 5, 5, 5);
     Wykres w(ui->doubleSpinBox_2->value(), ui->doubleSpinBox->value(), typFunkcji::liniowa);
     QVector<double> x(101), y(101);
 
