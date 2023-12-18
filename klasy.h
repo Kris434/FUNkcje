@@ -15,9 +15,11 @@ private:
     double skalaX;
     double skalaY;
     typFunkcji typ;
+    double x;
 
 public:
     void setSkala(double x, double y);
+    void setX(double n_x);
 
     double getSkalaX();
     double getSkalaY();
@@ -30,10 +32,8 @@ public:
 class Funkcje
 {
 private:
-    double x, y, a, b, c, d, Fi, f;
+    double a, b, c, d, Fi, f;
 public:
-    void setX(double n_x);
-    void setY(double n_y);
     void setA(double n_a);
     void setB(double n_b);
     void setC(double n_c);
@@ -41,9 +41,12 @@ public:
     void setF(double n_f);
     void setFi(double n_fi);
 
-
-    double getX();
-    double getY();
+    double getA();
+    double getB();
+    double getC();
+    double getD();
+    double getF();
+    double getFi();
 };
 
 class liniowa : public Funkcje
@@ -51,12 +54,9 @@ class liniowa : public Funkcje
 private:
 
 public:
-    double obliczY();
+    double obliczY(double n_x);
 
-    double getA();
-    double getB();
-
-    liniowa(double x, double a, double b);
+    liniowa(double a, double b);
 };
 
 class logarytmiczna : public Funkcje
@@ -64,13 +64,9 @@ class logarytmiczna : public Funkcje
 private:
 
 public:
-    double getA();
-    double getB();
-    double getC();
+    double obliczY(double x);
 
-    double obliczY();
-
-    logarytmiczna(double n_x, double n_a, double n_b, double n_c);
+    logarytmiczna(double n_a, double n_b, double n_c);
 };
 
 class sinus : public Funkcje
@@ -78,14 +74,9 @@ class sinus : public Funkcje
 private:
 
 public:
-    double getA();
-    double getB();
-    double getF();
-    double getFi();
+    double obliczY(double x);
 
-    double obliczY();
-
-    sinus(double n_x, double n_a, double n_b, double n_f, double n_fi);
+    sinus(double n_a, double n_b, double n_f, double n_fi);
 };
 
 class pierwiastek : public Funkcje
@@ -93,12 +84,9 @@ class pierwiastek : public Funkcje
 private:
 
 public:
-    double getA();
-    double getD();
+    double obliczY(double x);
 
-    double obliczY();
-
-    pierwiastek(double n_x, double n_a, double n_d);
+    pierwiastek(double n_a, double n_d);
 };
 
 #endif // KLASY_H

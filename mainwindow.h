@@ -23,6 +23,8 @@ private slots:
     void on_pushButton_8_clicked();  // pelny/okno ekran
     void on_pushButton_7_clicked();  // zamykania porgramu
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool MenuWidok = true;

@@ -1,5 +1,6 @@
 #include "klasy.h"
-#include "qcustomplot.cpp"
+#include "mainwindow.h"
+#include "qcustomplot.h"
 #include <cmath>
 
 void Wykres::setSkala(double x, double y)
@@ -16,6 +17,11 @@ void Wykres::setSkala(double x, double y)
     }
 }
 
+void Wykres::setX(double n_x)
+{
+    this->x = n_x;
+}
+
 double Wykres::getSkalaX()
 {
     return this->skalaX;
@@ -26,58 +32,10 @@ double Wykres::getSkalaY()
     return this->skalaY;
 }
 
-void Wykres::rysujWykres()
+Wykres::Wykres(double s_x, double s_y, typFunkcji t)
 {
-    QVector<double> x(101), y(101);
-
-    switch(typ)
-    {
-        default:
-        case typFunkcji::liniowa:
-            liniowa f(5, 5, 5);
-
-            for(int i = 0; i <= 100; i++)
-            {
-                x[i] = i/20;
-                y[i] = f.obliczY();
-            }
-    }
-
-    customPlot->addGraph();
-    customPlot->graph(0)->setData(x, y);
-
-    customPlot->xAxis->setLabel("x");
-    customPlot->yAxis->setLabel("y");
-
-    customPlot->xAxis->setRange(-1, 1);
-    customPlot->yAxis->setRange(0, 1);
-    customPlot->replot();
-}
-
-Wykres::Wykres(double x, double y, typFunkcji t)
-{
-    setSkala(x, y);
+    setSkala(s_x, s_y);
     this->typ = t;
-}
-
-void Funkcje::setX(double n_x)
-{
-    this->x = n_x;
-}
-
-void Funkcje::setY(double n_y)
-{
-    this->y = n_y;
-}
-
-double Funkcje::getY()
-{
-    return this->y;
-}
-
-double Funkcje::getX()
-{
-    return this->x;
 }
 
 void Funkcje::setA(double n_a)
@@ -107,127 +65,98 @@ void Funkcje::setF(double n_f)
 
 void Funkcje::setFi(double n_fi)
 {
-    this->fi = n_fi;
+    this->Fi = n_fi;
 }
 
-double liniowa::getA()
+double Funkcje::getA()
 {
     return this->a;
 }
 
-double liniowa::getB()
+double Funkcje::getB()
 {
     return this->b;
 }
 
-double liniowa::obliczY()
-{
-    double y;
-
-    y = a * getX() + b;
-
-    return y;
-}
-
-liniowa::liniowa(double x, double a, double b)
-{
-    setX(x);
-    setA(a);
-    setB(b);
-}
-
-double logarytmiczna::getA()
-{
-    return this->a;
-}
-
-double logarytmiczna::getB()
-{
-    return this->b;
-}
-
-double logarytmiczna::getC()
+double Funkcje::getC()
 {
     return this->c;
 }
 
-double logarytmiczna::obliczY()
+double Funkcje::getD()
+{
+    return this->d;
+}
+
+double Funkcje::getF()
+{
+    return this->f;
+}
+
+double Funkcje::getFi()
+{
+    return this->Fi;
+}
+
+double liniowa::obliczY(double n_x)
 {
     double y;
 
-    y = a * (log10(getX()) / log10(b)) + c;
+    y = getA() * n_x + getB();
 
     return y;
 }
 
-logarytmiczna::logarytmiczna(double n_x, double n_a, double n_b, double n_c)
+liniowa::liniowa(double a, double b)
 {
-    setX(n_x);
+    setA(a);
+    setB(b);
+}
+
+double logarytmiczna::obliczY(double x)
+{
+    double y;
+
+    y = getA() * (log10(x) / log10(getB())) + getC();
+
+    return y;
+}
+
+logarytmiczna::logarytmiczna(double n_a, double n_b, double n_c)
+{
     setA(n_a);
     setB(n_b);
     setC(n_c);
 }
 
-double sinus::getA()
-{
-    return this->a;
-}
-
-double sinus::getB()
-{
-    return this->b;
-}
-
-double sinus::getF()
-{
-    return this->f;
-}
-
-double sinus::getFi()
-{
-    return this->fi;
-}
-
-double sinus::obliczY()
+double sinus::obliczY(double x)
 {
     double y;
 
-    y = a * sin((2 * 3.14 * getX() * fi)) + b;
+    y = getA() * sin((2 * 3.14 * x * getFi())) + getB();
 
     return y;
 }
 
-sinus::sinus(double n_x, double n_a, double n_b, double n_f, double n_fi)
+sinus::sinus(double n_a, double n_b, double n_f, double n_fi)
 {
-    setX(n_x);
     setA(n_a);
     setB(n_b);
     setF(n_f);
     setFi(n_fi);
 }
 
-double pierwiastek::getA()
-{
-    return this->a;
-}
-
-double pierwiastek::getD()
-{
-    return this->d;
-}
-
-double pierwiastek::obliczY()
+double pierwiastek::obliczY(double x)
 {
     double y;
 
-    y = a * sqrt(getX()) + d;
+    y = getA() * sqrt(x) + getD();
 
     return y;
 }
 
-pierwiastek::pierwiastek(double n_x, double n_a, double n_d)
+pierwiastek::pierwiastek(double n_a, double n_d)
 {
-    setX(n_x);
     setA(n_a);
     setD(n_d);
 }
