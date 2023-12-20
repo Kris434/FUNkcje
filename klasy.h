@@ -1,20 +1,11 @@
 #ifndef KLASY_H
 #define KLASY_H
 
-enum class typFunkcji
-{
-    liniowa,
-    logarytmiczna,
-    pierwiastkowa,
-    sinus
-};
-
 class Wykres
 {
 private:
     double skalaX;
     double skalaY;
-    typFunkcji typ;
     double x;
 
 public:
@@ -24,9 +15,7 @@ public:
     double getSkalaX();
     double getSkalaY();
 
-    void rysujWykres();
-
-    Wykres(double x, double y, typFunkcji t);
+    Wykres(double x, double y);
 };
 
 class Funkcje
