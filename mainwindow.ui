@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>938</width>
-    <height>600</height>
+    <width>1266</width>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,6 +60,38 @@
            </widget>
           </item>
           <item>
+           <widget class="QFrame" name="menu_liniowa">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_13">
+             <item>
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Współczynnik nachylenia 'a'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="liniowa_A"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Wyraz wolny b</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="liniowa_B"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="text">
              <string>Logarytmiczna</string>
@@ -109,7 +141,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+              <widget class="QDoubleSpinBox" name="skalaX">
                <property name="decimals">
                 <number>1</number>
                </property>
@@ -122,7 +154,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="doubleSpinBox">
+              <widget class="QDoubleSpinBox" name="skalaY">
                <property name="decimals">
                 <number>1</number>
                </property>
@@ -154,7 +186,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+              <widget class="QDoubleSpinBox" name="rozdzielczosc">
                <property name="decimals">
                 <number>0</number>
                </property>
@@ -405,7 +437,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>938</width>
+     <width>1266</width>
      <height>21</height>
     </rect>
    </property>
