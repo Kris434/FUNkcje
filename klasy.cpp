@@ -32,10 +32,9 @@ double Wykres::getSkalaY()
     return this->skalaY;
 }
 
-Wykres::Wykres(double s_x, double s_y, typFunkcji t)
+Wykres::Wykres(double s_x, double s_y)
 {
     setSkala(s_x, s_y);
-    this->typ = t;
 }
 
 void Funkcje::setA(double n_a)
