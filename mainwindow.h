@@ -42,6 +42,9 @@ private:
     bool duzeOkno = true;
 
     bool liniowaWidok = true;
+    bool logarWidok = true;
+    bool sinusWidok = true;
+    bool pierWidok = true;
 
     QDoubleSpinBox *liniowa_A;
     QDoubleSpinBox *liniowa_B;

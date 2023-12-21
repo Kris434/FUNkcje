@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(resetSkali()));
 
     ui->menu_liniowa->hide();
+    ui->menu_logar->hide();
+    ui->menu_pier->hide();
+    ui->menu_sinus->hide();
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +97,9 @@ void MainWindow::pobranieAorazB()
 void MainWindow::munuLiniowaOtwarte()
 {
     ui->menu_liniowa->show();
+    ui->menu_logar->hide();
+    ui->menu_pier->hide();
+    ui->menu_sinus->hide();
 }
 
 void MainWindow::on_Liniowa_clicked()
@@ -102,6 +108,9 @@ void MainWindow::on_Liniowa_clicked()
         ui->menu_liniowa->hide();
     } else {
         ui->menu_liniowa->show();
+        ui->menu_logar->hide(); logarWidok = true;
+        ui->menu_sinus->hide(); sinusWidok = true;
+        ui->menu_pier->hide(); pierWidok = true;
     }
     liniowaWidok = !liniowaWidok;  // Zmiana stanu menu
 
@@ -144,6 +153,16 @@ void MainWindow::on_Liniowa_clicked()
 }
 void MainWindow::on_pushButton_2_clicked()
 {
+    if (!logarWidok) {
+        ui->menu_logar->hide();
+    } else {
+        ui->menu_logar->show();
+        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_sinus->hide(); sinusWidok = true;
+        ui->menu_pier->hide(); pierWidok = true;
+    }
+    logarWidok = !logarWidok;
+
     logarytmiczna f(5, 5, 5);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
@@ -165,7 +184,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     for(int i = 0; i <= rozdzielczosc; i++)
     {
-        x[i] = i / w.getSkalaX();
+        x[i] = i / (w.getSkalaX() / 8) - w.getSkalaX();
         y[i] = f.obliczY(x[i]);
     }
 
@@ -181,6 +200,16 @@ void MainWindow::on_pushButton_2_clicked()
 }
 void MainWindow::on_pushButton_3_clicked()
 {
+    if (!pierWidok) {
+        ui->menu_pier->hide();
+    } else {
+        ui->menu_pier->show();
+        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_logar->hide(); logarWidok = true;
+        ui->menu_sinus->hide(); sinusWidok = true;
+    }
+    pierWidok = !pierWidok;
+
     pierwiastek f(5, 5);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
@@ -218,6 +247,15 @@ void MainWindow::on_pushButton_3_clicked()
 }
 void MainWindow::on_pushButton_4_clicked()
 {
+    if (!sinusWidok) {
+        ui->menu_sinus->hide();
+    } else {
+        ui->menu_sinus->show();
+        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_logar->hide(); logarWidok = true;
+        ui->menu_pier->hide(); pierWidok = true;
+    }
+    sinusWidok = !sinusWidok;
     sinus f(1, 1, 1, 1);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;

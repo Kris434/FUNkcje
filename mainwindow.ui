@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1266</width>
-    <height>711</height>
+    <width>1623</width>
+    <height>1146</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,10 +78,7 @@
              <item>
               <widget class="QDoubleSpinBox" name="liniowa_A">
                <property name="minimum">
-                <double>-1000.000000000000000</double>
-               </property>
-               <property name="maximum">
-                <double>1000.000000000000000</double>
+                <double>-99.000000000000000</double>
                </property>
               </widget>
              </item>
@@ -93,7 +90,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="liniowa_B"/>
+              <widget class="QDoubleSpinBox" name="liniowa_B">
+               <property name="minimum">
+                <double>-99.000000000000000</double>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -106,6 +107,48 @@
            </widget>
           </item>
           <item>
+           <widget class="QFrame" name="menu_logar">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_14">
+             <item>
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Wspołczynnik 'a'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="logar_A"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Wspołczynnik 'b'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="logar_B"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>Wspołczynnik 'c'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="logar_C"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_3">
             <property name="text">
              <string>Pierwiastkowa</string>
@@ -113,10 +156,94 @@
            </widget>
           </item>
           <item>
+           <widget class="QFrame" name="menu_pier">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_15">
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Wspołczynnik 'a'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="pier_A"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Wspołczynnik 'd'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="pier_B"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_4">
             <property name="text">
              <string>Sinusoidalna</string>
             </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="menu_sinus">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_16">
+             <item>
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>Współczynnik 'a'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="sinus_A"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>Współczynnik 'b'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="sinus_B"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>Współczynnik 'f'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="sinus_F"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>Współczynnik 'fi'</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="sinus_Fi"/>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -395,16 +522,11 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QCustomPlot" name="customPlot" native="true">
-                 <property name="geometry">
-                  <rect>
-                   <x>9</x>
-                   <y>9</y>
-                   <width>641</width>
-                   <height>311</height>
-                  </rect>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <item>
+                  <widget class="QCustomPlot" name="customPlot" native="true"/>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -444,7 +566,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1266</width>
+     <width>1623</width>
      <height>21</height>
     </rect>
    </property>
