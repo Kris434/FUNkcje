@@ -35,7 +35,6 @@ double Wykres::getSkalaY()
 Wykres::Wykres(double s_x, double s_y)
 {
     setSkala(s_x, s_y);
-    //this->typ = t;
 }
 
 void Funkcje::setA(double n_a)
@@ -48,26 +47,6 @@ void Funkcje::setB(double n_b)
     this->b = n_b;
 }
 
-void Funkcje::setC(double n_c)
-{
-    this->c = n_c;
-}
-
-void Funkcje::setD(double n_d)
-{
-    this->d = n_d;
-}
-
-void Funkcje::setF(double n_f)
-{
-    this->f = n_f;
-}
-
-void Funkcje::setFi(double n_fi)
-{
-    this->Fi = n_fi;
-}
-
 double Funkcje::getA()
 {
     return this->a;
@@ -76,26 +55,6 @@ double Funkcje::getA()
 double Funkcje::getB()
 {
     return this->b;
-}
-
-double Funkcje::getC()
-{
-    return this->c;
-}
-
-double Funkcje::getD()
-{
-    return this->d;
-}
-
-double Funkcje::getF()
-{
-    return this->f;
-}
-
-double Funkcje::getFi()
-{
-    return this->Fi;
 }
 
 double liniowa::obliczY(double n_x)
@@ -113,6 +72,16 @@ liniowa::liniowa(double a, double b)
     setB(b);
 }
 
+void logarytmiczna::setC(double n_c)
+{
+    this->c = n_c;
+}
+
+double logarytmiczna::getC()
+{
+    return this->c;
+}
+
 double logarytmiczna::obliczY(double x)
 {
     double y;
@@ -127,6 +96,26 @@ logarytmiczna::logarytmiczna(double n_a, double n_b, double n_c)
     setA(n_a);
     setB(n_b);
     setC(n_c);
+}
+
+void sinus::setF(double n_f)
+{
+    this->f = n_f;
+}
+
+void sinus::setFi(double n_fi)
+{
+    this->Fi = n_fi;
+}
+
+double sinus::getF()
+{
+    return this->f;
+}
+
+double sinus::getFi()
+{
+    return this->Fi;
 }
 
 double sinus::obliczY(double x)
@@ -150,13 +139,13 @@ double pierwiastek::obliczY(double x)
 {
     double y;
 
-    y = getA() * sqrt(x) + getD();
+    y = getA() * sqrt(x) + getB();
 
     return y;
 }
 
-pierwiastek::pierwiastek(double n_a, double n_d)
+pierwiastek::pierwiastek(double n_a, double n_b)
 {
     setA(n_a);
-    setD(n_d);
+    setB(n_b);
 }

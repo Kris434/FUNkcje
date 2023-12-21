@@ -21,27 +21,20 @@ public:
 class Funkcje
 {
 private:
-    double a, b, c, d, Fi, f;
+    double a, b;
 public:
     void setA(double n_a);
     void setB(double n_b);
-    void setC(double n_c);
-    void setD(double n_d);
-    void setF(double n_f);
-    void setFi(double n_fi);
 
     double getA();
     double getB();
-    double getC();
-    double getD();
-    double getF();
-    double getFi();
+
 };
 
 class liniowa : public Funkcje
 {
 private:
-
+    double a, b;
 public:
     double obliczY(double n_x);
 
@@ -51,9 +44,13 @@ public:
 class logarytmiczna : public Funkcje
 {
 private:
-
+    double c;
 public:
     double obliczY(double x);
+
+    void setC(double n_c);
+
+    double getC();
 
     logarytmiczna(double n_a, double n_b, double n_c);
 };
@@ -61,9 +58,15 @@ public:
 class sinus : public Funkcje
 {
 private:
-
+    double f, Fi;
 public:
     double obliczY(double x);
+
+    void setF(double n_f);
+    void setFi(double n_fi);
+
+    double getF();
+    double getFi();
 
     sinus(double n_a, double n_b, double n_f, double n_fi);
 };
@@ -75,7 +78,7 @@ private:
 public:
     double obliczY(double x);
 
-    pierwiastek(double n_a, double n_d);
+    pierwiastek(double n_a, double n_b);
 };
 
 #endif // KLASY_H

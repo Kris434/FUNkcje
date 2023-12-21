@@ -30,7 +30,7 @@ private slots:
     void on_pushButton_4_clicked();
 
     void ZmianaWartoscSpinBox();
-    void updateSkali();
+    void updateSkali(char typFunkcji);
     void resetSkali();
 
     void pobranieAorazB();

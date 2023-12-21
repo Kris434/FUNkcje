@@ -69,23 +69,32 @@ void MainWindow::on_pushButton_7_clicked() // przycik do zamykania porgramu
 
 void MainWindow::ZmianaWartoscSpinBox()
 {
-    updateSkali();
+    updateSkali(0);
 }
-void MainWindow::updateSkali()
+void MainWindow::updateSkali(char typFunkcji)
 {
     double skalaX = ui->skalaX->value();
     double skalaY = ui->skalaY->value();
 
-    ui->customPlot->xAxis->setRange(-skalaX, skalaX);
-    ui->customPlot->yAxis->setRange(-skalaY, skalaY);
-    ui->customPlot->replot();
+    if(typFunkcji == 0)
+    {
+        ui->customPlot->xAxis->setRange(-skalaX, skalaX);
+        ui->customPlot->yAxis->setRange(-skalaY, skalaY);
+        ui->customPlot->replot();
+    }
+    else if(typFunkcji == 1)
+    {
+        ui->customPlot->xAxis->setRange(0, skalaX);
+        ui->customPlot->yAxis->setRange(0, skalaY);
+        ui->customPlot->replot();
+    }
 }
 void MainWindow::resetSkali()
 {
     ui->skalaX->setValue(20.0);
     ui->skalaY->setValue(20.0);
 
-    updateSkali();
+    updateSkali(0);
 }
 
 void MainWindow::pobranieAorazB()
@@ -121,25 +130,17 @@ void MainWindow::on_Liniowa_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    if(ui->rozdzielczosc->value() > 10001)
+    if (ui->rozdzielczosc->value() <= 0)
     {
-        rozdzielczosc = 10001;
-    }
-    else if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 101;
-    }
-    else
-    {
-        rozdzielczosc = static_cast<int>(ui->rozdzielczosc->value());
+        rozdzielczosc = 100;
     }
 
-    QVector<double> x(10001), y(10001);
+    QVector<double> x, y;
 
     for(int i = 0; i <= rozdzielczosc; i++)
     {
-        x[i] = i / (w.getSkalaX() / 8) - w.getSkalaX();
-        y[i] = f.obliczY(x[i]);
+        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
@@ -148,7 +149,7 @@ void MainWindow::on_Liniowa_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    //updateSkali();
+    updateSkali(0);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_2_clicked()
@@ -167,25 +168,17 @@ void MainWindow::on_pushButton_2_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    if(ui->rozdzielczosc->value() > 10001)
+    if (ui->rozdzielczosc->value() <= 0)
     {
-        rozdzielczosc = 10001;
-    }
-    else if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 101;
-    }
-    else
-    {
-        rozdzielczosc = static_cast<int>(ui->rozdzielczosc->value());
+        rozdzielczosc = 100;
     }
 
-    QVector<double> x(10001), y(10001);
+    QVector<double> x, y;
 
     for(int i = 0; i <= rozdzielczosc; i++)
     {
-        x[i] = i / (w.getSkalaX() / 8) - w.getSkalaX();
-        y[i] = f.obliczY(x[i]);
+        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
@@ -194,8 +187,7 @@ void MainWindow::on_pushButton_2_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    ui->customPlot->xAxis->setRange(0, w.getSkalaX());
-    ui->customPlot->yAxis->setRange(0, w.getSkalaY());
+    updateSkali(1);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_3_clicked()
@@ -214,25 +206,17 @@ void MainWindow::on_pushButton_3_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    if(ui->rozdzielczosc->value() > 10001)
+    if (ui->rozdzielczosc->value() <= 0)
     {
-        rozdzielczosc = 10001;
-    }
-    else if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 101;
-    }
-    else
-    {
-        rozdzielczosc = static_cast<int>(ui->rozdzielczosc->value());
+        rozdzielczosc = 100;
     }
 
-    QVector<double> x(10001), y(10001);
+    QVector<double> x, y;
 
     for(int i = 0; i <= rozdzielczosc; i++)
     {
-        x[i] = i / w.getSkalaX();
-        y[i] = f.obliczY(x[i]);
+        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
@@ -241,8 +225,7 @@ void MainWindow::on_pushButton_3_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    ui->customPlot->xAxis->setRange(0, w.getSkalaX());
-    ui->customPlot->yAxis->setRange(0, w.getSkalaY());
+    updateSkali(1);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_4_clicked()
@@ -260,25 +243,17 @@ void MainWindow::on_pushButton_4_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    if(ui->rozdzielczosc->value() > 10001)
+    if (ui->rozdzielczosc->value() <= 0)
     {
-        rozdzielczosc = 10001;
-    }
-    else if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 101;
-    }
-    else
-    {
-        rozdzielczosc = static_cast<int>(ui->rozdzielczosc->value());
+        rozdzielczosc = 100;
     }
 
-    QVector<double> x(10001), y(10001);
+    QVector<double> x, y;
 
     for(int i = 0; i <= rozdzielczosc; i++)
     {
-        x[i] = i / w.getSkalaX();
-        y[i] = f.obliczY(x[i]);
+        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
@@ -287,8 +262,7 @@ void MainWindow::on_pushButton_4_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    ui->customPlot->xAxis->setRange(0, w.getSkalaX());
-    ui->customPlot->yAxis->setRange(0, w.getSkalaY());
+    updateSkali(0);
     ui->customPlot->replot();
 }
 
