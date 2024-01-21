@@ -26,3 +26,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    ../build-FUNkcje-Desktop_Qt_6_3_2_MSVC2019_64bit-Debug/style.qss \
+    styles.css

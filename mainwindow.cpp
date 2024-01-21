@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->resize(800, 400);
+
     connect(ui->skalaX, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
     connect(ui->skalaY, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
 
@@ -33,6 +35,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menu_logar->hide();
     ui->menu_pier->hide();
     ui->menu_sinus->hide();
+
+    ui->customPlot->setBackground(QBrush(QColor(3, 6, 55)));
+
+    ui->customPlot->xAxis->setBasePen(QPen(QColor(255, 255, 255)));
+    ui->customPlot->xAxis->setTickPen(QPen(QColor(255, 255, 255)));
+    ui->customPlot->xAxis->setSubTickPen(QPen(QColor(255, 255, 255)));
+
+    ui->customPlot->yAxis->setBasePen(QPen(QColor(255, 255, 255)));
+    ui->customPlot->yAxis->setTickPen(QPen(QColor(255, 255, 255)));
+    ui->customPlot->yAxis->setSubTickPen(QPen(QColor(255, 255, 255)));
+
+    ui->customPlot->xAxis->setTickLabelColor(QColor(255, 255, 255));
+    ui->customPlot->yAxis->setTickLabelColor(QColor(255, 255, 255));
+
+    ui->customPlot->xAxis->setLabelColor(QColor(255, 255, 255));
+    ui->customPlot->yAxis->setLabelColor(QColor(255, 255, 255));
+
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setPen(QPen(QColor(200, 4, 85)));
+    ui->customPlot->graph(0)->setLayer("overlay");
 }
 
 MainWindow::~MainWindow()
