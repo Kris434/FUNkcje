@@ -7,7 +7,43 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->resize(800, 400);
+    this->resize(1700, 930);
+
+    QFrame *frame = ui->frame;
+    frame->setFixedWidth(250);
+    //frame->setFixedHeight(600);
+
+    QFrame *frame_3 = ui->frame_3;
+    frame_3->setFixedHeight(70);
+
+    QFrame *frame_6 = ui->frame_6;
+    frame_6->setFixedHeight(115);
+
+    QPixmap menuImage("G:/QT/projekty/PROGRAMOWANIE_PK/FUNkcje/menu.png");
+    QSize desiredSize(30, 30);
+    QPixmap scaledMenuImage = menuImage.scaled(desiredSize, Qt::KeepAspectRatio);
+    ui->pushButton_10->setIcon(QIcon(menuImage));
+    ui->pushButton_10->setIconSize(desiredSize);
+    ui->pushButton_10->setFixedSize(desiredSize);
+
+    QSize desiredSize2(20, 20);
+    QPixmap minImage("G:/QT/projekty/PROGRAMOWANIE_PK/FUNkcje/min.png");
+    QPixmap scaledMinImage = minImage.scaled(desiredSize, Qt::KeepAspectRatio);
+    ui->pushButton_9->setIcon(QIcon(minImage));
+    ui->pushButton_9->setIconSize(desiredSize2);
+    ui->pushButton_9->setFixedSize(30,30);
+
+    QPixmap fullImage("G:/QT/projekty/PROGRAMOWANIE_PK/FUNkcje/full.png");
+    QPixmap scaledFullImage = fullImage.scaled(desiredSize, Qt::KeepAspectRatio);
+    ui->pushButton_8->setIcon(QIcon(fullImage));
+    ui->pushButton_8->setIconSize(desiredSize2);
+    ui->pushButton_8->setFixedSize(30,30);
+
+    QPixmap closeImage("G:/QT/projekty/PROGRAMOWANIE_PK/FUNkcje/close.png");
+    QPixmap scaledCloseImage = closeImage.scaled(desiredSize, Qt::KeepAspectRatio);
+    ui->pushButton_7->setIcon(QIcon(closeImage));
+    ui->pushButton_7->setIconSize(desiredSize2);
+    ui->pushButton_7->setFixedSize(30,30);
 
     connect(ui->skalaX, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
     connect(ui->skalaY, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
