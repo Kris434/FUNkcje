@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QDoubleSpinBox>
+#include <QPixmap>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
