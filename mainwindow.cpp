@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     a = ui->liniowa_A->value();
     b = ui->liniowa_B->value();
 
-    connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::pobranieAorazB);
+    connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::pobranieAorazB);
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
@@ -93,7 +93,8 @@ void MainWindow::ZmianaWartoscSpinBox()
 {
     updateSkali(0);
 }
-void MainWindow::updateSkali(char typFunkcji)
+
+void MainWindow::updateSkali(bool typFunkcji)
 {
     double skalaX = ui->skalaX->value();
     double skalaY = ui->skalaY->value();
@@ -152,26 +153,35 @@ void MainWindow::on_Liniowa_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
+
+
     if (ui->rozdzielczosc->value() <= 0)
     {
         rozdzielczosc = 100;
     }
+    else
+    {
+        rozdzielczosc = ui->rozdzielczosc->value();
+    }
 
     QVector<double> x, y;
 
-    for(int i = 0; i <= rozdzielczosc; i++)
+    int ilePunktow = w.getSkalaX() * 2 * rozdzielczosc;
+
+    for(int i = 0; i <= ilePunktow; i++)
     {
-        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        x.push_back(w.getSkalaX() * 2 * (double)i / (ilePunktow - 1) - w.getSkalaX());
         y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
     ui->customPlot->graph(0)->setData(x, y);
 
+    updateSkali(0);
+
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    updateSkali(0);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_2_clicked()
@@ -197,19 +207,22 @@ void MainWindow::on_pushButton_2_clicked()
 
     QVector<double> x, y;
 
-    for(int i = 0; i <= rozdzielczosc; i++)
+    int ilePunktow = w.getSkalaX() * rozdzielczosc;
+
+    for(int i = 0; i <= ilePunktow; i++)
     {
-        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        x.push_back(w.getSkalaX() * (double)i / (ilePunktow - 1));
         y.push_back(f.obliczY(x[i]));
     }
 
     ui->customPlot->addGraph();
     ui->customPlot->graph(0)->setData(x, y);
 
+    updateSkali(1);
+
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    updateSkali(1);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_3_clicked()
@@ -228,6 +241,8 @@ void MainWindow::on_pushButton_3_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
+    updateSkali(1);
+
     if (ui->rozdzielczosc->value() <= 0)
     {
         rozdzielczosc = 100;
@@ -235,9 +250,11 @@ void MainWindow::on_pushButton_3_clicked()
 
     QVector<double> x, y;
 
-    for(int i = 0; i <= rozdzielczosc; i++)
+    int ilePunktow = w.getSkalaX() * 2 * rozdzielczosc;
+
+    for(int i = 0; i <= ilePunktow; i++)
     {
-        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        x.push_back(w.getSkalaX() * 2 * (double)i / (ilePunktow - 1) - w.getSkalaX());
         y.push_back(f.obliczY(x[i]));
     }
 
@@ -247,7 +264,6 @@ void MainWindow::on_pushButton_3_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    updateSkali(1);
     ui->customPlot->replot();
 }
 void MainWindow::on_pushButton_4_clicked()
@@ -265,6 +281,8 @@ void MainWindow::on_pushButton_4_clicked()
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
+    updateSkali(0);
+
     if (ui->rozdzielczosc->value() <= 0)
     {
         rozdzielczosc = 100;
@@ -272,9 +290,11 @@ void MainWindow::on_pushButton_4_clicked()
 
     QVector<double> x, y;
 
-    for(int i = 0; i <= rozdzielczosc; i++)
+    int ilePunktow = w.getSkalaX() * 2 * rozdzielczosc;
+
+    for(int i = 0; i <= ilePunktow; i++)
     {
-        x.push_back(i / (w.getSkalaX() / 8) - w.getSkalaX());
+        x.push_back(w.getSkalaX() * 2 * (double)i / (ilePunktow - 1) - w.getSkalaX());
         y.push_back(f.obliczY(x[i]));
     }
 
@@ -284,7 +304,7 @@ void MainWindow::on_pushButton_4_clicked()
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
 
-    updateSkali(0);
+
     ui->customPlot->replot();
 }
 
