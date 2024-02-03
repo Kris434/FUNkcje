@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1722</width>
-    <height>1146</height>
+    <height>1241</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,17 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="bottomMargin">
+        <number>9</number>
+       </property>
        <item>
         <widget class="QFrame" name="frame_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -43,11 +52,27 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>MATEMATYCZNE</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
         <widget class="QFrame" name="frame_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -55,14 +80,17 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
+          <property name="topMargin">
+           <number>15</number>
+          </property>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QPushButton" name="Liniowa">
             <property name="text">
              <string>Liniowa</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QFrame" name="menu_liniowa">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -102,14 +130,14 @@
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QPushButton" name="pushButton_2">
             <property name="text">
              <string>Logarytmiczna</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QFrame" name="menu_logar">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -151,14 +179,14 @@
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QPushButton" name="pushButton_3">
             <property name="text">
              <string>Pierwiastkowa</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QFrame" name="menu_pier">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -190,14 +218,14 @@
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QPushButton" name="pushButton_4">
             <property name="text">
              <string>Sinusoidalna</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignVCenter">
            <widget class="QFrame" name="menu_sinus">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -252,7 +280,7 @@
          </layout>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignVCenter">
         <widget class="QFrame" name="frame_5">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -260,7 +288,39 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QVBoxLayout" name="verticalLayout_17">
+          <item>
+           <widget class="QFrame" name="frame_8">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>ROZDZIELCZOŚĆ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="rozdzielczosc">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <double>10001.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QFrame" name="frame_7">
             <property name="frameShape">
@@ -306,43 +366,17 @@
             </layout>
            </widget>
           </item>
-          <item>
-           <widget class="QFrame" name="frame_8">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Rozdzielczość</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="rozdzielczosc">
-               <property name="decimals">
-                <number>0</number>
-               </property>
-               <property name="maximum">
-                <double>10001.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>100.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QFrame" name="frame_6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -350,10 +384,16 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
+          <property name="topMargin">
+           <number>9</number>
+          </property>
+          <item alignment="Qt::AlignTop">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>EXPORT/IMPORT</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -386,6 +426,18 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QFrame" name="frame_9">
          <property name="frameShape">
@@ -404,10 +456,13 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="rightMargin">
+              <number>46</number>
+             </property>
              <item>
               <widget class="QPushButton" name="pushButton_10">
                <property name="text">
-                <string>MENU</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -423,6 +478,12 @@
           </item>
           <item>
            <widget class="QFrame" name="frame_13">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -435,12 +496,15 @@
                <property name="text">
                 <string>FUNKCJA</string>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignRight">
            <widget class="QFrame" name="frame_14">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -452,21 +516,21 @@
              <item>
               <widget class="QPushButton" name="pushButton_9">
                <property name="text">
-                <string>MINIMALIZUJ</string>
+                <string/>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_8">
                <property name="text">
-                <string>ROZMIAR OKNA</string>
+                <string/>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_7">
                <property name="text">
-                <string>WYJDZ</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -527,7 +591,14 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <item>
-                  <widget class="QCustomPlot" name="customPlot" native="true"/>
+                  <widget class="QCustomPlot" name="customPlot" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -549,6 +620,9 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_9">
+          <property name="bottomMargin">
+           <number>9</number>
+          </property>
           <item>
            <widget class="QLabel" name="label_7">
             <property name="text">
