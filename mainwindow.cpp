@@ -305,10 +305,10 @@ void MainWindow::on_pushButton_2_clicked()
 
     int ilePunktow = w.getSkalaX() * rozdzielczosc;
 
-    for(int i = 0; i <= ilePunktow; i++)
+    for(int i = 1; i <= ilePunktow; i++)
     {
         x.push_back(w.getSkalaX() * (double)i / (ilePunktow - 1));
-        y.push_back(f.obliczY(x[i]));
+        y.push_back(f.obliczY(x[i-1]));
     }
 
     ui->customPlot->addGraph();

@@ -122,7 +122,7 @@ double sinus::obliczY(double x)
 {
     double y;
 
-    y = getA() * sin((2 * 3.14 * x * getFi())) + getB();
+    y = getA() * sin((2 * 3.14 * getF() * x + getFi())) + getB();
 
     return y;
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1722</width>
-    <height>1241</height>
+    <height>1247</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -262,7 +262,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="sinus_F"/>
+              <widget class="QDoubleSpinBox" name="sinus_F">
+               <property name="minimum">
+                <double>0.010000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>10.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_16">
