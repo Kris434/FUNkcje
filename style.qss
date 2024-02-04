@@ -13,6 +13,11 @@ QLabel{
     border-radius: 10px;
 }
 
+#frame_3{
+    border-top: 0;
+    border-bottom: 2px solid #720455;
+}
+
 #frame_5{
     border-top: 2px solid #720455;
     border-bottom: 2px solid #720455;
@@ -27,6 +32,10 @@ QLabel{
 #frame_11{
     background-color: #3C0753;
     border-radius: 10px;
+}
+
+#pushButton_10{
+    background-color: #3C0753;
 }
 
 QPushButton {

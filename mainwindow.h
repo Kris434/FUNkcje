@@ -32,11 +32,15 @@ private slots:
     void on_pushButton_4_clicked();
 
     void ZmianaWartoscSpinBox();
-    void updateSkali(bool typFunkcji);
+    void updateSkali();
+    void updateSkali_2();
     void resetSkali();
+    void resetSkali_2();
 
-    void pobranieAorazB();
     void munuLiniowaOtwarte();
+    void munuLogarOtwarte();
+    void munuPierOtwarte();
+    void munuSinusOtwarte();
 
 private:
     Ui::MainWindow *ui;
@@ -48,10 +52,5 @@ private:
     bool sinusWidok = true;
     bool pierWidok = true;
 
-    QDoubleSpinBox *liniowa_A;
-    QDoubleSpinBox *liniowa_B;
-
-    double a;
-    double b;
 };
 #endif // MAINWINDOW_H

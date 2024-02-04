@@ -53,18 +53,47 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->liniowa_A->setValue(1.0);
     ui->liniowa_B->setValue(0.0);
-
-    a = ui->liniowa_A->value();
-    b = ui->liniowa_B->value();
+    ui->logar_A->setValue(5.0);
+    ui->logar_B->setValue(5.0);
+    ui->logar_C->setValue(5.0);
+    ui->pier_A->setValue(2.0);
+    ui->pier_B->setValue(0.0);
+    ui->sinus_A->setValue(1.0);
+    ui->sinus_B->setValue(0.0);
+    ui->sinus_F->setValue(0.0);
+    ui->sinus_Fi->setValue(1.0);
 
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
-    connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::pobranieAorazB);
+    connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
 
+    connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
+    connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
+    connect(ui->logar_C, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
+    connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
+    connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
+    connect(ui->logar_C, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
+
+    connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
+    connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
+    connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
+    connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
+
+    connect(ui->sinus_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
+    connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
+    connect(ui->sinus_F, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
+    connect(ui->sinus_Fi, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
+    connect(ui->sinus_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
+    connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
+    connect(ui->sinus_F, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
+    connect(ui->sinus_Fi, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
+
+
+
     connect(ui->Liniowa, SIGNAL(clicked()), this, SLOT(resetSkali()));
-    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali()));
-    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
+    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
     connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(resetSkali()));
 
     ui->menu_liniowa->hide();
@@ -127,47 +156,74 @@ void MainWindow::on_pushButton_7_clicked() // przycik do zamykania porgramu
 
 void MainWindow::ZmianaWartoscSpinBox()
 {
-    updateSkali(0);
+    if (!ui->menu_liniowa->isHidden() || !ui->menu_sinus->isHidden())
+    {
+        updateSkali();
+    }
+    else if(!ui->menu_pier->isHidden() || !ui->menu_logar->isHidden())
+    {
+        updateSkali_2();
+    }
 }
-
-void MainWindow::updateSkali(bool typFunkcji)
+void MainWindow::updateSkali()
 {
     double skalaX = ui->skalaX->value();
     double skalaY = ui->skalaY->value();
 
-    if(typFunkcji == 0)
-    {
-        ui->customPlot->xAxis->setRange(-skalaX, skalaX);
-        ui->customPlot->yAxis->setRange(-skalaY, skalaY);
-        ui->customPlot->replot();
-    }
-    else if(typFunkcji == 1)
-    {
-        ui->customPlot->xAxis->setRange(0, skalaX);
-        ui->customPlot->yAxis->setRange(0, skalaY);
-        ui->customPlot->replot();
-    }
+    ui->customPlot->xAxis->setRange(-skalaX, skalaX);
+    ui->customPlot->yAxis->setRange(-skalaY, skalaY);
+    ui->customPlot->replot();
 }
+void MainWindow::updateSkali_2()
+{
+    double skalaX2 = ui->skalaX->value();
+    double skalaY2 = ui->skalaY->value();
+
+    ui->customPlot->xAxis->setRange(0, skalaX2);
+    ui->customPlot->yAxis->setRange(0, skalaY2);
+    ui->customPlot->replot();
+}
+
 void MainWindow::resetSkali()
 {
     ui->skalaX->setValue(20.0);
     ui->skalaY->setValue(20.0);
-
-    updateSkali(0);
+    updateSkali();
 }
-
-void MainWindow::pobranieAorazB()
+void MainWindow::resetSkali_2()
 {
-    a = ui->liniowa_A->value();
-    b = ui->liniowa_B->value();
-    on_Liniowa_clicked();
+    ui->skalaX->setValue(20.0);
+    ui->skalaY->setValue(20.0);
+    updateSkali_2();
 }
+
 void MainWindow::munuLiniowaOtwarte()
 {
     ui->menu_liniowa->show();
     ui->menu_logar->hide();
     ui->menu_pier->hide();
     ui->menu_sinus->hide();
+}
+void MainWindow::munuLogarOtwarte()
+{
+    ui->menu_liniowa->hide();
+    ui->menu_logar->show();
+    ui->menu_pier->hide();
+    ui->menu_sinus->hide();
+}
+void MainWindow::munuPierOtwarte()
+{
+    ui->menu_liniowa->hide();
+    ui->menu_logar->hide();
+    ui->menu_pier->show();
+    ui->menu_sinus->hide();
+}
+void MainWindow::munuSinusOtwarte()
+{
+    ui->menu_liniowa->hide();
+    ui->menu_logar->hide();
+    ui->menu_pier->hide();
+    ui->menu_sinus->show();
 }
 
 void MainWindow::on_Liniowa_clicked()
@@ -213,7 +269,7 @@ void MainWindow::on_Liniowa_clicked()
     ui->customPlot->addGraph();
     ui->customPlot->graph(0)->setData(x, y);
 
-    updateSkali(0);
+    updateSkali();
 
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
@@ -232,7 +288,11 @@ void MainWindow::on_pushButton_2_clicked()
     }
     logarWidok = !logarWidok;
 
-    logarytmiczna f(5, 5, 5);
+    double logar_A = ui->logar_A->value();
+    double logar_B = ui->logar_B->value();
+    double logar_C = ui->logar_C->value();
+
+    logarytmiczna f(logar_A, logar_B, logar_C);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
@@ -254,7 +314,7 @@ void MainWindow::on_pushButton_2_clicked()
     ui->customPlot->addGraph();
     ui->customPlot->graph(0)->setData(x, y);
 
-    updateSkali(1);
+    updateSkali_2();
 
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
@@ -273,11 +333,14 @@ void MainWindow::on_pushButton_3_clicked()
     }
     pierWidok = !pierWidok;
 
-    pierwiastek f(5, 5);
+    double pier_A = ui->pier_A->value();
+    double pier_B = ui->pier_B->value();
+
+    pierwiastek f(pier_A, pier_B);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    updateSkali(1);
+    updateSkali_2();
 
     if (ui->rozdzielczosc->value() <= 0)
     {
@@ -313,11 +376,17 @@ void MainWindow::on_pushButton_4_clicked()
         ui->menu_pier->hide(); pierWidok = true;
     }
     sinusWidok = !sinusWidok;
-    sinus f(1, 1, 1, 1);
+
+    double sinus_A = ui->sinus_A->value();
+    double sinus_B = ui->sinus_B->value();
+    double sinus_F = ui->sinus_F->value();
+    double sinus_Fi = ui->sinus_Fi->value();
+
+    sinus f(sinus_A, sinus_B, sinus_F, sinus_Fi);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
     int rozdzielczosc = 101;
 
-    updateSkali(0);
+    updateSkali();
 
     if (ui->rozdzielczosc->value() <= 0)
     {
