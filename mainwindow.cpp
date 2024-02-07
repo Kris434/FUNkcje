@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->skalaY, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
     connect(ui->skalaXmin, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
     connect(ui->skalaYmin, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
+    connect(ui->rozdzielczosc, SIGNAL(valueChanged(int)), this, SLOT(setRozdzielczosc()));
 
     ui->skalaY->setValue(10.0);
     ui->skalaX->setValue(10.0);
@@ -71,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
+    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
 
     connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
     connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
@@ -78,11 +80,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
     connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
     connect(ui->logar_C, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
+    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
 
     connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
     connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
     connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
     connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
+    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
 
     connect(ui->sinus_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
     connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
@@ -92,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
     connect(ui->sinus_F, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
     connect(ui->sinus_Fi, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
+    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
 
 
 
@@ -206,6 +211,22 @@ void MainWindow::resetSkali()
     updateSkali();
 }
 
+int MainWindow::setRozdzielczosc()
+{
+    int rozdzielczosc;
+
+    if(ui->rozdzielczosc->value() > 0)
+    {
+        rozdzielczosc = ui->rozdzielczosc->value();
+    }
+    else
+    {
+        rozdzielczosc = 100;
+    }
+
+    return rozdzielczosc;
+}
+
 void MainWindow::munuLiniowaOtwarte()
 {
     ui->menu_liniowa->show();
@@ -252,18 +273,7 @@ void MainWindow::on_Liniowa_clicked()
 
     liniowa f(liniowa_A, liniowa_B);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
-    int rozdzielczosc = 101;
-
-
-
-    if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 100;
-    }
-    else
-    {
-        rozdzielczosc = ui->rozdzielczosc->value();
-    }
+    int rozdzielczosc = setRozdzielczosc();
 
     QVector<double> x, y;
 
@@ -303,12 +313,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     logarytmiczna f(logar_A, logar_B, logar_C);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
-    int rozdzielczosc = 101;
-
-    if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 100;
-    }
+    int rozdzielczosc = setRozdzielczosc();
 
     QVector<double> x, y;
 
@@ -347,14 +352,9 @@ void MainWindow::on_pushButton_3_clicked()
 
     pierwiastek f(pier_A, pier_B);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
-    int rozdzielczosc = 101;
+    int rozdzielczosc = setRozdzielczosc();
 
     updateSkali_2();
-
-    if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 100;
-    }
 
     QVector<double> x, y;
 
@@ -393,14 +393,9 @@ void MainWindow::on_pushButton_4_clicked()
 
     sinus f(sinus_A, sinus_B, sinus_F, sinus_Fi);
     Wykres w(ui->skalaX->value(), ui->skalaY->value());
-    int rozdzielczosc = 101;
+    int rozdzielczosc = setRozdzielczosc();
 
     updateSkali();
-
-    if (ui->rozdzielczosc->value() <= 0)
-    {
-        rozdzielczosc = 100;
-    }
 
     QVector<double> x, y;
 

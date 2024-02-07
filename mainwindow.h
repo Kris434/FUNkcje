@@ -5,6 +5,7 @@
 #include <QDoubleSpinBox>
 #include <QPixmap>
 #include <QPushButton>
+#include "klasy.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,6 +36,7 @@ private slots:
     void updateSkali();
     void updateSkali_2();
     void resetSkali();
+    int setRozdzielczosc();
 
     void munuLiniowaOtwarte();
     void munuLogarOtwarte();
