@@ -47,9 +47,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->skalaX, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
     connect(ui->skalaY, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
+    connect(ui->skalaXmin, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
+    connect(ui->skalaYmin, SIGNAL(valueChanged(double)), this, SLOT(ZmianaWartoscSpinBox()));
 
-    ui->skalaY->setValue(20.0);
-    ui->skalaX->setValue(20.0);
+    ui->skalaY->setValue(10.0);
+    ui->skalaX->setValue(10.0);
+    ui->skalaYmin->setValue(-10.0);
+    ui->skalaXmin->setValue(-10.0);
 
     ui->liniowa_A->setValue(1.0);
     ui->liniowa_B->setValue(0.0);
@@ -60,8 +64,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pier_B->setValue(0.0);
     ui->sinus_A->setValue(1.0);
     ui->sinus_B->setValue(0.0);
-    ui->sinus_F->setValue(0.0);
-    ui->sinus_Fi->setValue(1.0);
+    ui->sinus_F->setValue(1.0);
+    ui->sinus_Fi->setValue(0.0);
 
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
@@ -92,8 +96,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->Liniowa, SIGNAL(clicked()), this, SLOT(resetSkali()));
-    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
-    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali()));
+    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali()));
     connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(resetSkali()));
 
     ui->menu_liniowa->hide();
@@ -164,37 +168,42 @@ void MainWindow::ZmianaWartoscSpinBox()
     {
         updateSkali_2();
     }
+    else
+    {
+        updateSkali();
+    }
 }
 void MainWindow::updateSkali()
 {
     double skalaX = ui->skalaX->value();
     double skalaY = ui->skalaY->value();
+    double skalaXmin = ui->skalaXmin->value();
+    double skalaYmin = ui->skalaYmin->value();
 
-    ui->customPlot->xAxis->setRange(-skalaX, skalaX);
-    ui->customPlot->yAxis->setRange(-skalaY, skalaY);
+    ui->customPlot->xAxis->setRange(skalaXmin, skalaX);
+    ui->customPlot->yAxis->setRange(skalaYmin, skalaY);
     ui->customPlot->replot();
 }
 void MainWindow::updateSkali_2()
 {
     double skalaX2 = ui->skalaX->value();
     double skalaY2 = ui->skalaY->value();
+    //double skalaX2min = ui->skalaXmin->value();
+    double skalaY2min = ui->skalaYmin->value();
 
-    ui->customPlot->xAxis->setRange(0, skalaX2);
-    ui->customPlot->yAxis->setRange(0, skalaY2);
+    ui->skalaXmin->setValue(0.0);
+    ui->customPlot->xAxis->setRange(0.0, skalaX2);
+    ui->customPlot->yAxis->setRange(skalaY2min, skalaY2);
     ui->customPlot->replot();
 }
 
 void MainWindow::resetSkali()
 {
-    ui->skalaX->setValue(20.0);
-    ui->skalaY->setValue(20.0);
+    ui->skalaX->setValue(10.0);
+    ui->skalaY->setValue(10.0);
+    ui->skalaXmin->setValue(-10.0);
+    ui->skalaYmin->setValue(-10.0);
     updateSkali();
-}
-void MainWindow::resetSkali_2()
-{
-    ui->skalaX->setValue(20.0);
-    ui->skalaY->setValue(20.0);
-    updateSkali_2();
 }
 
 void MainWindow::munuLiniowaOtwarte()

@@ -35,7 +35,6 @@ private slots:
     void updateSkali();
     void updateSkali_2();
     void resetSkali();
-    void resetSkali_2();
 
     void munuLiniowaOtwarte();
     void munuLogarOtwarte();
