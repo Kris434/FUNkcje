@@ -101,8 +101,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->Liniowa, SIGNAL(clicked()), this, SLOT(resetSkali()));
-    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali()));
-    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
+    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(resetSkali_2()));
     connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(resetSkali()));
 
     ui->menu_liniowa->hide();
@@ -209,6 +209,15 @@ void MainWindow::resetSkali()
     ui->skalaXmin->setValue(-10.0);
     ui->skalaYmin->setValue(-10.0);
     updateSkali();
+}
+
+void MainWindow::resetSkali_2()
+{
+    ui->skalaX->setValue(10.0);
+    ui->skalaY->setValue(10.0);
+    ui->skalaXmin->setValue(0.0);
+    ui->skalaYmin->setValue(-10.0);
+    updateSkali_2();
 }
 
 int MainWindow::setRozdzielczosc()
