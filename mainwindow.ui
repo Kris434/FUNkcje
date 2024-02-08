@@ -476,30 +476,6 @@
           <property name="topMargin">
            <number>9</number>
           </property>
-          <item alignment="Qt::AlignTop">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>EXPORT/IMPORT</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_6">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
