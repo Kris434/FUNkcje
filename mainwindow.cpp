@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
     connect(ui->liniowa_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
     connect(ui->liniowa_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLiniowaOtwarte);
-    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
+    //connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_Liniowa_clicked);
 
     connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
     connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
@@ -80,13 +80,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->logar_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
     connect(ui->logar_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
     connect(ui->logar_C, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuLogarOtwarte);
-    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
+    //connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_2_clicked);
 
     connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
     connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
     connect(ui->pier_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
     connect(ui->pier_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuPierOtwarte);
-    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
+    //connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_3_clicked);
 
     connect(ui->sinus_A, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
     connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sinus_B, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
     connect(ui->sinus_F, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
     connect(ui->sinus_Fi, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::munuSinusOtwarte);
-    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::on_pushButton_4_clicked);
+    connect(ui->rozdzielczosc, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::sprawdzOtwarteMenu);
 
 
 
@@ -134,6 +134,26 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::sprawdzOtwarteMenu()
+{
+    if(!ui->menu_liniowa->isHidden())
+    {
+        obliczLiniowa();
+    }
+    else if(!ui->menu_logar->isHidden())
+    {
+        obliczLogar();
+    }
+    else if(!ui->menu_pier->isHidden())
+    {
+        obliczPier();
+    }
+    else if(!ui->menu_sinus->isHidden())
+    {
+        obliczSinus();
+    }
 }
 
 void MainWindow::on_pushButton_10_clicked() // wyswietlanie menu bocznegol
@@ -265,18 +285,8 @@ void MainWindow::munuSinusOtwarte()
     ui->menu_sinus->show();
 }
 
-void MainWindow::on_Liniowa_clicked()
+void MainWindow::obliczLiniowa()
 {
-    if (!liniowaWidok) {
-        ui->menu_liniowa->hide();
-    } else {
-        ui->menu_liniowa->show();
-        ui->menu_logar->hide(); logarWidok = true;
-        ui->menu_sinus->hide(); sinusWidok = true;
-        ui->menu_pier->hide(); pierWidok = true;
-    }
-    liniowaWidok = !liniowaWidok;  // Zmiana stanu menu
-
     double liniowa_A = ui->liniowa_A->value();
     double liniowa_B = ui->liniowa_B->value();
 
@@ -304,18 +314,24 @@ void MainWindow::on_Liniowa_clicked()
 
     ui->customPlot->replot();
 }
-void MainWindow::on_pushButton_2_clicked()
+
+void MainWindow::on_Liniowa_clicked()
 {
-    if (!logarWidok) {
-        ui->menu_logar->hide();
+    if (!liniowaWidok) {
+        ui->menu_liniowa->hide();
     } else {
-        ui->menu_logar->show();
-        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_liniowa->show();
+        ui->menu_logar->hide(); logarWidok = true;
         ui->menu_sinus->hide(); sinusWidok = true;
         ui->menu_pier->hide(); pierWidok = true;
     }
-    logarWidok = !logarWidok;
+    liniowaWidok = !liniowaWidok;  // Zmiana stanu menu
 
+    obliczLiniowa();
+}
+
+void MainWindow::obliczLogar()
+{
     double logar_A = ui->logar_A->value();
     double logar_B = ui->logar_B->value();
     double logar_C = ui->logar_C->value();
@@ -344,18 +360,24 @@ void MainWindow::on_pushButton_2_clicked()
 
     ui->customPlot->replot();
 }
-void MainWindow::on_pushButton_3_clicked()
-{
-    if (!pierWidok) {
-        ui->menu_pier->hide();
-    } else {
-        ui->menu_pier->show();
-        ui->menu_liniowa->hide(); liniowaWidok = true;
-        ui->menu_logar->hide(); logarWidok = true;
-        ui->menu_sinus->hide(); sinusWidok = true;
-    }
-    pierWidok = !pierWidok;
 
+void MainWindow::on_pushButton_2_clicked()
+{
+    if (!logarWidok) {
+        ui->menu_logar->hide();
+    } else {
+        ui->menu_logar->show();
+        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_sinus->hide(); sinusWidok = true;
+        ui->menu_pier->hide(); pierWidok = true;
+    }
+    logarWidok = !logarWidok;
+
+    obliczLogar();
+}
+
+void MainWindow::obliczPier()
+{
     double pier_A = ui->pier_A->value();
     double pier_B = ui->pier_B->value();
 
@@ -383,18 +405,24 @@ void MainWindow::on_pushButton_3_clicked()
 
     ui->customPlot->replot();
 }
-void MainWindow::on_pushButton_4_clicked()
+
+void MainWindow::on_pushButton_3_clicked()
 {
-    if (!sinusWidok) {
-        ui->menu_sinus->hide();
+    if (!pierWidok) {
+        ui->menu_pier->hide();
     } else {
-        ui->menu_sinus->show();
+        ui->menu_pier->show();
         ui->menu_liniowa->hide(); liniowaWidok = true;
         ui->menu_logar->hide(); logarWidok = true;
-        ui->menu_pier->hide(); pierWidok = true;
+        ui->menu_sinus->hide(); sinusWidok = true;
     }
-    sinusWidok = !sinusWidok;
+    pierWidok = !pierWidok;
 
+    obliczPier();
+}
+
+void MainWindow::obliczSinus()
+{
     double sinus_A = ui->sinus_A->value();
     double sinus_B = ui->sinus_B->value();
     double sinus_F = ui->sinus_F->value();
@@ -424,5 +452,20 @@ void MainWindow::on_pushButton_4_clicked()
 
 
     ui->customPlot->replot();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    if (!sinusWidok) {
+        ui->menu_sinus->hide();
+    } else {
+        ui->menu_sinus->show();
+        ui->menu_liniowa->hide(); liniowaWidok = true;
+        ui->menu_logar->hide(); logarWidok = true;
+        ui->menu_pier->hide(); pierWidok = true;
+    }
+    sinusWidok = !sinusWidok;
+
+    obliczSinus();
 }
 

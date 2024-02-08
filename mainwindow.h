@@ -32,12 +32,18 @@ private slots:
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
 
+    void obliczLiniowa();
+    void obliczLogar();
+    void obliczPier();
+    void obliczSinus();
+
     void ZmianaWartoscSpinBox();
     void updateSkali();
     void updateSkali_2();
     void resetSkali();
     void resetSkali_2();
     int setRozdzielczosc();
+    void sprawdzOtwarteMenu();
 
     void munuLiniowaOtwarte();
     void munuLogarOtwarte();
